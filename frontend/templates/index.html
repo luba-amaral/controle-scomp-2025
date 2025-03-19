@@ -3,87 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados 2025</title>
+    <title>Adicionar Dados 2025</title>
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <h1>Adicionar Dados 2025</h1>
-    <form action="{{ url_for('salvar') }}" method="post">
-       
-        <label for="data_entrada">Data de Entrada:</label>
-        <input type="date" id="data_entrada" name="data_entrada" required>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h1 class="card-title text-center mb-0">Adicionar Dados 2025</h1>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('salvar') }}" method="post" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="data_entrada" class="form-label">Data de Entrada:</label>
+                            <input type="date" class="form-control" id="data_entrada" name="data_entrada" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="numero_processo" class="form-label">N° do Processo:</label>
+                            <input type="text" class="form-control" id="numero_processo" name="numero_processo" required>
+                        </div>
+                    </div>
 
-        <label for="numero_processo">N° do Processo:</label>
-        <input type="text" id="numero_processo" name="numero_processo" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="unidade_demandante" class="form-label">Unidade Demandante:</label>
+                            <select class="form-select" id="unidade_demandante" name="unidade_demandante" required>
+                                <option value="DIVLS">DIVLS</option>
+                                <option value="OPMES">OPMES</option>
+                                <option value="SFA">SFA</option>
+                                <option value="SLA">SLA</option>
+                                <option value="SEC">SEC</option>
+                                <option value="DHH">DHH</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="modalidade_compra" class="form-label">Modalidade de Compra:</label>
+                            <select class="form-select" id="modalidade_compra" name="modalidade_compra" required>
+                                <option value="Licitação">Licitação</option>
+                                <option value="Adesão">Adesão</option>
+                                <option value="Art. 75 VIII">Art. 75 VIII</option>
+                                <option value="Inegibilidade">Inegibilidade</option>
+                                <option value="Art. 75 III">Art. 75 III</option>
+                                <option value="Renovação Contratual">Renovação Contratual</option>
+                            </select>
+                        </div>
+                    </div>
 
-        <label for="unidade_demandante">Unidade Demandante:</label>
-        <select id="unidade_demandante" name="unidade_demandante" required>
-            <option value="DIVLS">DIVLS</option>
-            <option value="OPMES">OPMES</option>
-            <option value="SFA">SFA</option>
-            <option value="SLA">SLA</option>
-            <option value="SEC">SEC</option>
-            <option value="DHH">DHH</option>
-        </select>
+                    <div class="mb-3">
+                        <label for="objeto" class="form-label">Objeto:</label>
+                        <textarea class="form-control" id="objeto" name="objeto" rows="3" required></textarea>
+                    </div>
 
-        <label for="modalidade_compra">Modalidade de Compra:</label>
-        <input type="text" id="modalidade_compra" name="modalidade_compra" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="quantidade_itens" class="form-label">Quantidade de Itens:</label>
+                            <input type="number" class="form-control" id="quantidade_itens" name="quantidade_itens" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cotador" class="form-label">Cotador:</label>
+                            <input type="text" class="form-control" id="cotador" name="cotador" required>
+                        </div>
+                    </div>
 
-        <label for="objeto">Objeto:</label>
-        <textarea id="objeto" name="objeto" required></textarea>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="criacao_processo" class="form-label">Criação Proc./Pesquisa:</label>
+                            <input type="date" class="form-control" id="criacao_processo" name="criacao_processo" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="numero_pesquisa" class="form-label">Nº Pesquisa:</label>
+                            <input type="text" class="form-control" id="numero_pesquisa" name="numero_pesquisa" required>
+                        </div>
+                    </div>
 
-        <label for="quantidade_itens">Quantidade de Itens:</label>
-        <input type="number" id="quantidade_itens" name="quantidade_itens" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="finalizacao_pesquisa" class="form-label">Finalização da Pesquisa:</label>
+                            <input type="date" class="form-control" id="finalizacao_pesquisa" name="finalizacao_pesquisa" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="hoje" class="form-label">Hoje:</label>
+                            <input type="date" class="form-control" id="hoje" name="hoje" required>
+                        </div>
+                    </div>
 
-        <label for="cotador">Cotador:</label>
-        <input type="text" id="cotador" name="cotador" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="status_processo" class="form-label">Status do Processo:</label>
+                            <select class="form-select" id="status_processo" name="status_processo" required>
+                                <option value="Finalizado">Finalizado</option>
+                                <option value="Em pesquisa no mercado">Em pesquisa no mercado</option>
+                                <option value="Despachado">Despachado</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="data_saida" class="form-label">Data de Saída:</label>
+                            <input type="date" class="form-control" id="data_saida" name="data_saida">
+                        </div>
+                    </div>
 
-        <label for="criacao_processo">Criação Proc./Pesquisa:</label>
-        <input type="date" id="criacao_processo" name="criacao_processo" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="dias_fora_setor" class="form-label">Dias Fora do Setor:</label>
+                            <input type="number" class="form-control" id="dias_fora_setor" name="dias_fora_setor" readonly>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="contador_total" class="form-label">Contador Total:</label>
+                            <input type="number" class="form-control" id="contador_total" name="contador_total" readonly>
+                        </div>
+                    </div>
 
-        <label for="numero_pesquisa">Nº Pesquisa:</label>
-        <input type="text" id="numero_pesquisa" name="numero_pesquisa" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="mes" class="form-label">Mês:</label>
+                            <select class="form-select" id="mes" name="mes" required>
+                                <option value="Janeiro">Janeiro</option>
+                                <option value="Fevereiro">Fevereiro</option>
+                                <option value="Março">Março</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Maio">Maio</option>
+                                <option value="Junho">Junho</option>
+                                <option value="Julho">Julho</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Setembro">Setembro</option>
+                                <option value="Outubro">Outubro</option>
+                                <option value="Novembro">Novembro</option>
+                                <option value="Dezembro">Dezembro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="peso_processos" class="form-label">Peso dos Processos:</label>
+                            <input type="number" class="form-control" id="peso_processos" name="peso_processos" step="0.01" required>
+                        </div>
+                    </div>
 
-        <label for="finalizacao_pesquisa">Finalização da Pesquisa:</label>
-        <input type="date" id="finalizacao_pesquisa" name="finalizacao_pesquisa" required>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <label for="hoje">Hoje:</label>
-        <input type="date" id="hoje" name="hoje" required>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        <label for="status_processo">Status do Processo:</label>
-        <select id="status_processo" name="status_processo" required>
-            <option value="Finalizado">Finalizado</option>
-            <option value="Em pesquisa no mercado">Em pesquisa no mercado</option>
-            <option value="Despachado">Despachado</option>
-            <option value="Cancelado">Cancelado</option>
-        </select>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const campoHoje = document.getElementById("hoje");
+            const dataAtual = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            campoHoje.value = dataAtual;
 
-        <label for="data_saida">Data de Saída:</label>
-        <input type="date" id="data_saida" name="data_saida">
+            const dataEntrada = document.getElementById("data_entrada");
+            const dataSaida = document.getElementById("data_saida");
+            const diasForaSetor = document.getElementById("dias_fora_setor");
+            const contadorTotal = document.getElementById("contador_total");
 
-        <label for="dias_fora_setor">Dias Fora do Setor:</label>
-        <input type="number" id="dias_fora_setor" name="dias_fora_setor">
+            dataSaida.addEventListener("change", function () {
+                if (dataEntrada.value && dataSaida.value) {
+                    const entrada = new Date(dataEntrada.value);
+                    const saida = new Date(dataSaida.value);
+                    const diferenca = saida - entrada;
+                    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
 
-        <label for="mes">Mês:</label>
-        <select id="mes" name="mes" required>
-            <option value="Janeiro">Janeiro</option>
-            <option value="Fevereiro">Fevereiro</option>
-            <option value="Março">Março</option>
-            <option value="Abril">Abril</option>
-            <option value="Maio">Maio</option>
-            <option value="Junho">Junho</option>
-            <option value="Julho">Julho</option>
-            <option value="Agosto">Agosto</option>
-            <option value="Setembro">Setembro</option>
-            <option value="Outubro">Outubro</option>
-            <option value="Novembro">Novembro</option>
-            <option value="Dezembro">Dezembro</option>
-        </select>
+                    diasForaSetor.value = dias;
+                    
+                    const hoje = new Date();
+                    const diferencaContador = saida - entrada;
+                    const contador = Math.floor(diferencaContador / (1000*60*60*24)) - dias;
 
-        <label for="peso_processos">Peso dos Processos:</label>
-        <input type="number" id="peso_processos" name="peso_processos" step="0.01" required>
+                    contadorTotal.value = contador;
 
-        <button type="submit">Salvar</button>
-    </form>
+                } else {
+                    diasForaSetor.value = ""; 
+                    contadorTotal.value = ""; 
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -52,12 +52,29 @@ def salvar():
     dados["Data de Saída"] = pd.to_datetime(
         dados["Data de Saída"], format="%Y-%m-%d") if dados["Data de Saída"] else None
 
-    # Cálculos automáticos
+    # cálculos automáticos
     dados["Contador Total"] = (datetime.now() - dados["Data de Entrada"]).days
     dados["Observação"] = f"Saiu em {dados['Data de Saída'].strftime('%d/%m/%Y')}" if dados["Data de Saída"] else ""
-    dados["Mês"] = dados["Data de Entrada"].strftime('%B')  # Nome do mês
-    dados["dias fora do setor"] = (
-        dados["Data de Saída"] - dados["Data de Entrada"]).days if dados["Data de Saída"] else 0
+    dados["Mês"] = dados["Data de Entrada"].strftime('%B')
+
+    # contador
+    if dados["Data de Saída"]:
+        contador_total = (dados["Data de Saída"] -
+                          dados["Data de Entrada"]).days
+
+    else:
+        contador_total = (datetime.now() - dados["Data de Entrada"]).days
+
+    contador_total -= int(dados["dias fora do setor"])
+    dados["Contador Total"] = contador_total
+
+    # dias fora do setor
+    if dados["Data de Saída"]:
+        diferenca = dados["Data de Saída"] - dados["Data de Entrada"]
+        dados["dias fora do setor"] = diferenca.days
+
+    else:
+        dados["dias fora do setor"] = 0
 
     # Converte para DataFrame
     df = pd.DataFrame([dados])
