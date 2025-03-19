@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Fechamento</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Analista</th>
+                <th>Finalizados</th>
+                <th>Cancelados</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for linha in dados %}
+            <tr>
+                <td>{{ linha['Analista'] }}</td>
+                <td>{{ linha['Finalizados'] }}</td>
+                <td>{{ linha['Cancelados'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>

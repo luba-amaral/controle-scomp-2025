@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Salvos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Dados Salvos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Data de Entrada</th>
+                <th>N° do Processo</th>
+                <th>Unidade Demandante</th>
+                <th>Modalidade de Compra</th>
+                <th>Objeto</th>
+                <th>Qtd. De itens</th>
+                <th>Cotador</th>
+                <th>Criação Proc./Pesquisa</th>
+                <th>Nº Pesquisa</th>
+                <th>Finalização da Pesquisa</th>
+                <th>Hoje</th>
+                <th>Status do Processo</th>
+                <th>Data de Saída</th>
+                <th>Contador Total</th>
+                <th>dias fora do setor</th>
+                <th>Observação</th>
+                <th>Mês</th>
+                <th>Peso dos Processos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for linha in dados %}
+            <tr>
+                <td>{{ linha['Data de Entrada'] }}</td>
+                <td>{{ linha['N° do Processo'] }}</td>
+                <td>{{ linha['Unidade Demandante'] }}</td>
+                <td>{{ linha['Modalidade de Compra'] }}</td>
+                <td>{{ linha['Objeto'] }}</td>
+                <td>{{ linha['Qtd. De itens'] }}</td>
+                <td>{{ linha['Cotador'] }}</td>
+                <td>{{ linha['Criação Proc./Pesquisa'] }}</td>
+                <td>{{ linha['Nº Pesquisa'] }}</td>
+                <td>{{ linha['Finalização da Pesquisa'] }}</td>
+                <td>{{ linha['Hoje'] }}</td>
+                <td>{{ linha['Status do Processo'] }}</td>
+                <td>{{ linha['Data de Saída'] }}</td>
+                <td>{{ linha['Contador Total'] }}</td>
+                <td>{{ linha['dias fora do setor'] }}</td>
+                <td>{{ linha['Observação'] }}</td>
+                <td>{{ linha['Mês'] }}</td>
+                <td>{{ linha['Peso dos Processos'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>

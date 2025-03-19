@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados 2025</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Adicionar Dados 2025</h1>
+    <form action="{{ url_for('salvar') }}" method="post">
+       
+        <label for="data_entrada">Data de Entrada:</label>
+        <input type="date" id="data_entrada" name="data_entrada" required>
+
+        <label for="numero_processo">N° do Processo:</label>
+        <input type="text" id="numero_processo" name="numero_processo" required>
+
+        <label for="unidade_demandante">Unidade Demandante:</label>
+        <select id="unidade_demandante" name="unidade_demandante" required>
+            <option value="DIVLS">DIVLS</option>
+            <option value="OPMES">OPMES</option>
+            <option value="SFA">SFA</option>
+            <option value="SLA">SLA</option>
+            <option value="SEC">SEC</option>
+            <option value="DHH">DHH</option>
+        </select>
+
+        <label for="modalidade_compra">Modalidade de Compra:</label>
+        <input type="text" id="modalidade_compra" name="modalidade_compra" required>
+
+        <label for="objeto">Objeto:</label>
+        <textarea id="objeto" name="objeto" required></textarea>
+
+        <label for="quantidade_itens">Quantidade de Itens:</label>
+        <input type="number" id="quantidade_itens" name="quantidade_itens" required>
+
+        <label for="cotador">Cotador:</label>
+        <input type="text" id="cotador" name="cotador" required>
+
+        <label for="criacao_processo">Criação Proc./Pesquisa:</label>
+        <input type="date" id="criacao_processo" name="criacao_processo" required>
+
+        <label for="numero_pesquisa">Nº Pesquisa:</label>
+        <input type="text" id="numero_pesquisa" name="numero_pesquisa" required>
+
+        <label for="finalizacao_pesquisa">Finalização da Pesquisa:</label>
+        <input type="date" id="finalizacao_pesquisa" name="finalizacao_pesquisa" required>
+
+        <label for="hoje">Hoje:</label>
+        <input type="date" id="hoje" name="hoje" required>
+
+        <label for="status_processo">Status do Processo:</label>
+        <select id="status_processo" name="status_processo" required>
+            <option value="Finalizado">Finalizado</option>
+            <option value="Em pesquisa no mercado">Em pesquisa no mercado</option>
+            <option value="Despachado">Despachado</option>
+            <option value="Cancelado">Cancelado</option>
+        </select>
+
+        <label for="data_saida">Data de Saída:</label>
+        <input type="date" id="data_saida" name="data_saida">
+
+        <label for="dias_fora_setor">Dias Fora do Setor:</label>
+        <input type="number" id="dias_fora_setor" name="dias_fora_setor">
+
+        <label for="mes">Mês:</label>
+        <select id="mes" name="mes" required>
+            <option value="Janeiro">Janeiro</option>
+            <option value="Fevereiro">Fevereiro</option>
+            <option value="Março">Março</option>
+            <option value="Abril">Abril</option>
+            <option value="Maio">Maio</option>
+            <option value="Junho">Junho</option>
+            <option value="Julho">Julho</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Setembro">Setembro</option>
+            <option value="Outubro">Outubro</option>
+            <option value="Novembro">Novembro</option>
+            <option value="Dezembro">Dezembro</option>
+        </select>
+
+        <label for="peso_processos">Peso dos Processos:</label>
+        <input type="number" id="peso_processos" name="peso_processos" step="0.01" required>
+
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
