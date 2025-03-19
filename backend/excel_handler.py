@@ -5,7 +5,7 @@ from datetime import datetime
 class ExcelProcessor:
     def __init__(self, planilha_path):
         self.planilha_path = planilha_path
-        
+
         # le os dados da aba dados
     def ler_dados(self):
         return pd.read_excel(self.planilha_path, sheet_name="Dados 2025")
@@ -14,41 +14,39 @@ class ExcelProcessor:
         with pd.ExcelWriter(self.planilha_path, engine='openpyxl', mode="a", if_sheet_exists="replace") as writer:
             df.to_excel(writer, sheet_name="Dados 2025", index=False)
 
+        # vai calcular os dados de entrada e saida de acoro com mes e ano
     def calcular_entradas_saidas(self, df, mes, ano):
+        inicio_mes = datetime(ano, mes, 1)
+        fim_mes = datetime(
+            ano, mes + 1, 1) if mes < 12 else datetime(ano + 1, 1, 1)
 
-        
+        dados_mes = df[(df["Data de Entrada"] >= inicio_mes)
+                       & (df["Data de Entrada"] < fim_mes)]
+        entradas = dados_mes[dados_mes["Status do processo"].str.contains(
+            "SEI*", na=False)]
+        saidas = dados_mes[(dados_mes["Status do Processo"].str.contains(
+            "SEI*", na=False)) & (dados_mes["Data de Saída"].notna())]
 
-        self.ws_fechamento.unmerge_cells()
+        return {
+            "entradas": len(entradas),
+            "saídas": len(saidas)
+        }
 
-        self.ws_fechamento.delete_rows(1, self.ws_fechamento.max_row)
+    def update_fechamento_sheet(self, df):
+        # preserva formilas e formatação
+        with pd.ExcelWriter(self.planilha_path, engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+            # atualiza a aba fechamento, caso exista
+            if "Fechamento" in pd.ExcelFile(self.planilha_path). sheet_names:
+                fechamento_df = pd.read_excel(
+                    self.planilha_path, sheet_name="Fechamento")
 
-        self.ws_fechamento['A1'] = "Analista"
-        self.ws_fechamento['B1'] = "Finalizados"
-        self.ws_fechamento['C1'] = "Cancelados"
+                for mes in range(1, 13):
+                    resultados = self.calcular_entradas_saidas(df, mes, 2025)
+                    fechamento_df.loc[mes - 1,
+                                      "Entradas"] = resultados["entradas"]
+                    fechamento_df.loc[mes - 1, "Saídas"] = resultados["saidas"]
 
-        analistas = df.groupby('Cotador')[
-            'Status do Processo'].value_counts().unstack()
-        for idx, (analista, row) in enumerate(analistas.iterrows(), start=2):
-            self.ws_fechamento[f'A{idx}'] = analista
-            self.ws_fechamento[f'B{idx}'] = row.get('Finalizado', 0)
-            self.ws_fechamento[f'C{idx}'] = row.get('Cancelado', 0)
-
-    def ler_fechamento(self):
-
-        return pd.read_excel(self.planilha_path, sheet_name="Fechamento")
-
-    def add_data_validations(self):
-
-        dv_unidade = DataValidation(
-            type="list", formula1='"DIVLS,OPMES,SFA,SLA,SEC,DHH"', allow_blank=True)
-        self.ws_dados.add_data_validation(dv_unidade)
-        dv_unidade.add("C2:C1048576")
-
-        dv_status = DataValidation(
-            type="list", formula1='"Finalizado,Em pesquisa no mercado,Despachado,Cancelado"', allow_blank=True)
-        self.ws_dados.add_data_validation(dv_status)
-        dv_status.add("L2:L1048576")
-
-    def save(self):
-
-        self.wb.save(self.planilha_path)
+                fechamento_df.to_excel(
+                    writer, sheet_name="Fechamento", index=False)
+            else:
+                print("Erro: Aba 'Fechamento' não encontrada")

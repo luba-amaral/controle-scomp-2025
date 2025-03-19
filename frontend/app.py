@@ -41,7 +41,7 @@ def salvar():
         "Peso dos Processos": request.form.get("peso_processos"),
     }
 
-    # Converte datas para datetime
+    # converte datas para formato datetime
     dados["Data de Entrada"] = pd.to_datetime(
         dados["Data de Entrada"], format="%Y-%m-%d")
     dados["Criação Proc./Pesquisa"] = pd.to_datetime(

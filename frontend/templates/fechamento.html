@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fechamento</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Seu CSS personalizado -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Fechamento</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Analista</th>
-                <th>Finalizados</th>
-                <th>Cancelados</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for linha in dados %}
-            <tr>
-                <td>{{ linha['Analista'] }}</td>
-                <td>{{ linha['Finalizados'] }}</td>
-                <td>{{ linha['Cancelados'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ url_for('index') }}">Voltar</a>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Fechamento</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Analista</th>
+                    <th>Finalizados</th>
+                    <th>Cancelados</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for linha in dados %}
+                <tr>
+                    <td>{{ linha['Analista'] }}</td>
+                    <td>{{ linha['Finalizados'] }}</td>
+                    <td>{{ linha['Cancelados'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-center">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
