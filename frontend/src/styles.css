@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8faf9; /* fundo da tela */
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, button, .form-control, .form-check {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;  /* Adicionando borda arredondada */
+}
+
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%; /* Garante que o input ocupe toda a largura disponível */
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd00;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f200;
+}
+
+/* Estilos para os campos de checkbox (caixinhas) */
+.form-check {
+    margin-top: 10px;
+}
+
+.form-check label {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* Estilos para os campos de data */
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para os campos de texto */
+input[type="text"], input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para os campos de seleção */
+select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos do botão */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para o Bootstrap */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.card {
+    border: none; /* remove a borda do card */
+}
+
+.card-header {
+    font-size: 1.5rem; /* tamanho do titulo */
+    background-color: #007bff; /* cor de fundo do cabeçalho */
+    color: rgba(255, 255, 255, 0.815); /* cor do texto do cabeçalho */
+}
+
+.form-control:focus {
+    border-color: #0d6efd; /* cor da borda */
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* sombra */
+}
+
+.btn-success {
+    background-color: #28a745; /* verde escuro */
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* verde escuro ao passar o mouse */
+    border-color: #1e7e34;
+}
+
+.shadow-lg {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* sombra mais intensa */
+}
+
+.d-grid {
+    display: grid;
+}
+
+/* Estilo para os campos de Observação */
+textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    min-height: 100px;
+}
+
+/* Ajuste no layout de formulario */
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group .form-item {
+    flex: 1;
+    min-width: 220px;
+}

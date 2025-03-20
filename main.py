@@ -1,5 +1,5 @@
 from backend.excel_handler import ExcelProcessor
-from backend.data_processing import process_data
+from backend.data_processing import process_data # type: ignore
 from backend.validations import validate_dates
 
 
