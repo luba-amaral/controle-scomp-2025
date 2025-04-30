@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle SCOMP 2025</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+  >
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Controle SCOMP 2025</h1>
+
+  <form action="{{ url_for('add') }}" method="POST" class="formulario">
+    <!-- todos os campos que discutimos (datas, selects, inputs) -->
+    <!-- Data de Entrada -->
+    <label>Data de Entrada:</label>
+    <input type="date" name="data_entrada" required>
+    <!-- Número do Processo -->
+    <label>N° do Processo:</label>
+    <input type="text" name="numero_processo" required>
+    <!-- Unidade Demandante -->
+    <label>Unidade Demandante:</label>
+    <select name="unidade_demandante" required>
+      <option value="">Selecione</option>
+      <option>DIVLS</option><option>OPMES</option>
+      <option>SFA</option><option>SLA</option>
+      <option>SEC</option><option>DHH</option>
+    </select>
+    <!-- Modalidade -->
+    <label>Modalidade de Compra:</label>
+    <select name="modalidade_compra" required>
+      <option value="">Selecione</option>
+      <option>Licitação</option>
+      <option>Dispensa</option>
+      <option>Inexigibilidade</option>
+    </select>
+    <!-- Objeto -->
+    <label>Objeto:</label>
+    <input type="text" name="objeto" required>
+    <!-- Qtd Itens -->
+    <label>Qtd. de Itens:</label>
+    <input type="number" name="qtd_itens" required>
+    <!-- Cotador -->
+    <label>Cotador:</label>
+    <input type="text" name="cotador" required>
+    <!-- Criação Pesquisa -->
+    <label>Criação Proc./Pesquisa:</label>
+    <input type="date" name="criacao_proceso">
+    <!-- Nº Pesquisa -->
+    <label>Nº Pesquisa:</label>
+    <input type="text" name="numero_pesquisa">
+    <!-- Finalização Pesquisa -->
+    <label>Finalização da Pesquisa:</label>
+    <input type="date" name="finalizacao_pesquisa">
+    <!-- Status -->
+    <label>Status do Processo:</label>
+    <select name="status_processo" required>
+      <option value="">Selecione</option>
+      <option>Finalizado</option>
+      <option>Em Pesquisa no Mercado</option>
+      <option>Despachado</option>
+      <option>Cancelado</option>
+    </select>
+    <!-- Data Saída -->
+    <label>Data de Saída:</label>
+    <input type="date" name="data_saida">
+    <!-- Dias Fora do Setor -->
+    <label>Dias Fora do Setor:</label>
+    <input type="number" name="dias_fora_setor">
+    <!-- Mês -->
+    <label>Mês:</label>
+    <select name="mes" required>
+      <option value="">Selecione</option>
+      <option>Janeiro</option><option>Fevereiro</option>
+      <option>Março</option><option>Abril</option>
+      <option>Maio</option><option>Junho</option>
+      <option>Julho</option><option>Agosto</option>
+      <option>Setembro</option><option>Outubro</option>
+      <option>Novembro</option><option>Dezembro</option>
+    </select>
+    <!-- Peso -->
+    <label>Peso dos Processos:</label>
+    <input type="number" name="peso_processos">
+    <button type="submit">Adicionar Processo</button>
+    <a href="{{ url_for('export') }}" class="btn-export">Exportar</a>
+  </form>
+
+  <table id="tbl" class="display">
+    <thead>
+      <tr>
+        <th>ID</th><th>Entrada</th><th>Processo</th><th>Unid.</th>
+        <th>Modal.</th><th>Objeto</th><th>Itens</th><th>Cot.</th>
+        <th>Criação</th><th>Pesq.</th><th>Final.</th><th>Status</th>
+        <th>Saída</th><th>Cont.</th><th>Fora</th><th>Obs</th><th>Mês</th><th>Peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in processos %}
+      <tr>
+        <td>{{ p['id'] }}</td>
+        <td>{{ p['data_entrada'] }}</td>
+        <td>{{ p['numero_processo'] }}</td>
+        <td>{{ p['unidade_demandante'] }}</td>
+        <td>{{ p['modalidade_compra'] }}</td>
+        <td>{{ p['objeto'] }}</td>
+        <td>{{ p['qtd_itens'] }}</td>
+        <td>{{ p['cotador'] }}</td>
+        <td>{{ p['criacao_proceso'] }}</td>
+        <td>{{ p['numero_pesquisa'] }}</td>
+        <td>{{ p['finalizacao_pesquisa'] }}</td>
+        <td>{{ p['status_processo'] }}</td>
+        <td>{{ p['data_saida'] }}</td>
+        <td>{{ p['contador_total'] }}</td>
+        <td>{{ p['dias_fora_setor'] }}</td>
+        <td>{{ p['observacao'] }}</td>
+        <td>{{ p['mes'] }}</td>
+        <td>{{ p['peso_processos'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#tbl').DataTable();
+    });
+  </script>
+</body>
+</html>
